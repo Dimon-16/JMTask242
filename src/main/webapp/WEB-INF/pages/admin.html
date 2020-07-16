@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Это страница управления базой User'ов.</h1>
+<table>
+    <tr>
+        <td>
+            <table border="1">
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>password</th>
+                    <th>age</th>
+                </tr>
+                <tr th:each="user : ${list}">
+
+                    <td th:text="${user.id}">default</td>
+                    <td th:text="${user.name}">default</td>
+                    <td th:text="${user.password}">default</td>
+                    <td th:text="${user.age}">default</td>
+                </tr>
+            </table>
+
+        </td>
+        <td>
+            Эта форма для добавления пользователя:<br>
+            <form action="/admin/add" method="POST">
+                <input type="text" name="name" value="name"><br>
+                <input type="text" name="lastName" value="lastName"><br>
+                <input type="number" name="age" value="age"><br>
+                <input type="submit" value="Send add"><br><br>
+            </form>
+            Эта форма для удаления пользователя:<br>
+            <form action="/admin/delete" method="POST">
+                <input type="number" name="id" value="id"><br>
+                <input type="submit" value="Send delete"><br><br>
+
+            </form>
+            Эта форма для изменения пользователя:<br>
+            <form action="/admin/update" method="POST">
+                <input type="number" name="id" value="id"><br>
+                <input type="text" name="name" value="name"><br>
+                <input type="text" name="lastName" value="lastName"><br>
+                <input type="number" name="age" value="age"><br>
+                <input type="submit" value="Send update">
+            </form>
+            <p>
+                <form th:action="@{/logout}" method="post">
+                   <input type="submit" value="Sign Out"/>
+                 </form>
+            </p>
+
+        </td>
+    </tr>
+</table>
+</body>
+</html>
